@@ -6,6 +6,7 @@ import numpy as np
 
 OUTPUT_PES = "pes_tests/"
 OUTPUT_SVG = "svg_tests/"
+INPUT_SVG = "tests_input/"
 
 
 class Embryoid:
@@ -42,15 +43,16 @@ def solid_block(x_len=100, y_len=100, num_stitches=20):
     return stitches
 
 
-def parse():
+def parse(fname):
     e = Embryoid()
-    e.parse_svg("star.svg")
-    e.save_svg("star_test.svg")
-    e.save_pes("result.pes")
+    e.parse_svg(INPUT_SVG + fname)
+    e.save_svg("linger_longer.svg")
+    e.save_pes("linger_longer.pes")
 
 
 if __name__ == "__main__":
-    e = Embryoid()
-    e.add_stitch_block(solid_block())
-    e.save_svg("block_test.svg")
-    e.save_pes("block_test.pes")
+    parse("linger_longer_audioplot.svg")
+    # e = Embryoid()
+    # e.add_stitch_block(solid_block())
+    # e.save_svg("block_test.svg")
+    # e.save_pes("block_test.pes")
