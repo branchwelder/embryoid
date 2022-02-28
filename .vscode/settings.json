@@ -1,3 +1,8 @@
 {
-    "terminal.integrated.cwd": "${workspaceFolder}"
+    "terminal.integrated.cwd": "${workspaceFolder}",
+    "cSpell.words": [
+        "pyplot",
+        "xlabel",
+        "ylabel"
+    ]
 }

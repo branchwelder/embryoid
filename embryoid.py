@@ -22,8 +22,15 @@ class Embryoid:
     def add_stitch_block(self, block):
         self.pattern.add_block(block)
 
+    def block_from_coords(self, coords):
+        block = []
+        for coord in coords:
+            block.append((coord[0], coord[1]))
+        self.pattern.add_block(block, "teal")
+
     def parse_svg(self, fname):
         paths, attributes = svg2paths(fname)
+        print(paths)
         print(attributes)
         for path in paths:
             block = []
@@ -43,15 +50,22 @@ def solid_block(x_len=100, y_len=100, num_stitches=20):
     return stitches
 
 
-def parse(fname):
+def parse(fname, outname):
     e = Embryoid()
     e.parse_svg(INPUT_SVG + fname)
-    e.save_svg("linger_longer.svg")
-    e.save_pes("linger_longer.pes")
+    e.save_svg(outname + ".svg")
+    e.save_pes(outname + ".pes")
 
 
 if __name__ == "__main__":
-    parse("linger_longer_audioplot.svg")
+    from embroiderTurtle import hilbert
+
+    e = Embryoid()
+    e.block_from_coords([*hilbert()])
+    e.save_pes("hilbert.pes")
+    e.save_svg("hilbert.svg")
+    print(*hilbert())
+    # parse("convo.svg", "convo")
     # e = Embryoid()
     # e.add_stitch_block(solid_block())
     # e.save_svg("block_test.svg")
